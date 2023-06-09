@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.33516.290
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BrainwaveAPI", "BrainwaveAPI.csproj", "{1BF7194F-AAB4-4618-BE07-2F2F5073FA1A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BrainwaveAPI", "BrainwaveAPI.csproj", "{1BF7194F-AAB4-4618-BE07-2F2F5073FA1A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Brainwave.Common", "..\Brainwave.Common\Brainwave.Common.csproj", "{612699CD-3553-4846-9349-F55B5BF24DBE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{1BF7194F-AAB4-4618-BE07-2F2F5073FA1A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1BF7194F-AAB4-4618-BE07-2F2F5073FA1A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1BF7194F-AAB4-4618-BE07-2F2F5073FA1A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{612699CD-3553-4846-9349-F55B5BF24DBE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{612699CD-3553-4846-9349-F55B5BF24DBE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{612699CD-3553-4846-9349-F55B5BF24DBE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{612699CD-3553-4846-9349-F55B5BF24DBE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
