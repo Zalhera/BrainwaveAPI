@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace BrainwaveAPI.Database
 {
-    public class BrainwaveDbContext : DbContext
+    public class BrainwaveDbContext : DbContext, IBrainwaveDbContext
     {
         public BrainwaveDbContext(DbContextOptions<BrainwaveDbContext> options) : base(options) { }
 
@@ -18,13 +18,15 @@ namespace BrainwaveAPI.Database
                 entity.ToTable(nameof(Answer));
 
                 entity.HasKey(_ => _.Id);
+                entity.Property(_ => _.Id)
+                    .ValueGeneratedOnAdd();
                 entity.Property(_ => _.Text)
                     .HasMaxLength(255)
                     .IsRequired(false);
                 entity.Property(_ => _.Image)
                     .IsRequired(false);
-                entity.HasOne<Question>()
-                    .WithMany()
+                entity.HasOne(_ => _.Question)
+                    .WithMany(_ => _.Answers)
                     .HasForeignKey(_ => _.QuestionId);
             });
 
@@ -33,17 +35,16 @@ namespace BrainwaveAPI.Database
                 entity.ToTable(nameof(Question));
 
                 entity.HasKey(_ => _.Id);
+                entity.Property(_ => _.Id)
+                    .ValueGeneratedOnAdd();
                 entity.Property(_ => _.Text)
                     .HasMaxLength(255)
                     .IsRequired(false);
                 entity.Property(_ => _.Image)
                     .IsRequired(false);
-                entity.HasOne<Quiz>()
-                    .WithMany()
+                entity.HasOne(_ => _.Quiz)
+                    .WithMany(_ => _.Questions)
                     .HasForeignKey(_ => _.QuizId);
-                entity.HasMany(_ => _.Answers)
-                    .WithOne()
-                    .HasForeignKey(_ => _.QuestionId);
             });
 
             modelBuilder.Entity<Quiz>(entity =>
@@ -51,15 +52,14 @@ namespace BrainwaveAPI.Database
                 entity.ToTable(nameof(Quiz));
 
                 entity.HasKey(_ => _.Id);
+                entity.Property(_ => _.Id)
+                    .ValueGeneratedOnAdd();
                 entity.Property(_ => _.Name)
                     .HasMaxLength(255)
                     .IsRequired(true);
                 entity.Property(_ => _.Description)
                     .HasMaxLength(2048)
                     .IsRequired(false);
-                entity.HasMany(_ => _.Questions)
-                    .WithOne()
-                    .HasForeignKey(_ => _.QuizId);
             });
 
             base.OnModelCreating(modelBuilder);

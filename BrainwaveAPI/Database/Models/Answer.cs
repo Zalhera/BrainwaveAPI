@@ -1,6 +1,6 @@
 ﻿namespace BrainwaveAPI.Database.Models
 {
-    public class Answer
+    public class Answer : BaseEntity
     {
         public long Id { get; set; }
         public long QuestionId { get; set; }

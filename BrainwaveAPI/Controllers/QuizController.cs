@@ -1,4 +1,5 @@
 ﻿using Brainwave.Common.Models;
+using BrainwaveAPI.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BrainwaveAPI.Controllers
@@ -7,11 +8,17 @@ namespace BrainwaveAPI.Controllers
     [Route("api/v1/[controller]")]
     public class QuizController : ControllerBase
     {
-        [HttpPost]
+        private readonly IQuizService _quizService;
+
+        public QuizController(IQuizService quizService)
+        {
+            _quizService = quizService;
+        }
+
+        [HttpPost("create")]
         public async Task<IActionResult> CreateQuizAsync([FromBody] CreateQuizModel createQuiz)
         {
-            // TODO: Create the quiz
-            return Ok();
+            return Ok(await _quizService.CreateQuizAsync(createQuiz.Name, createQuiz.Description));
         }
     }
 }
